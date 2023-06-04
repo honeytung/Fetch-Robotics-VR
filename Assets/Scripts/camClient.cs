@@ -80,7 +80,7 @@ public class camClient : MonoBehaviour
                 // Get VR HMD orientation
                 string camRotation = mainCam.transform.rotation.eulerAngles.ToString();
                 // Get the controller stick values
-                Vector2 touchPosition = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.Touch);
+                Vector2 touchPosition = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick, OVRInput.Controller.Touch);
                 string touchPositionString = touchPosition.ToString();
                 // Combine camRotation and touchPosition into one message
                 string combinedMessage = $"{camRotation};{touchPositionString}";
