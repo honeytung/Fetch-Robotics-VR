@@ -16,21 +16,27 @@ public class UIOptions : MonoBehaviour {
     [SerializeField] GameObject canvas;
     [SerializeField] RawImage webStreamImage;
 
-    bool isActive;
+    bool UIisActive;
+    bool CamisActive;
 
     // Start is called before the first frame update
     void Start() {
-        isActive = false;
-        canvas.SetActive(isActive);
-        webStreamImage.enabled = isActive;
+        UIisActive = false;
+        CamisActive = false;
+        canvas.SetActive(UIisActive);
+        webStreamImage.enabled = CamisActive;
     }
 
     // Update is called once per frame
     void Update() {
         if (OVRInput.GetUp(OVRInput.Button.One)) {
-            isActive = !isActive;
-            canvas.SetActive(isActive);
-            webStreamImage.enabled = isActive;
+            UIisActive = !UIisActive;
+            canvas.SetActive(UIisActive);
+        }
+        if (OVRInput.GetUp(OVRInput.Button.Two))
+        {
+            CamisActive = !CamisActive;
+            webStreamImage.enabled = CamisActive;
         }
     }
 }
