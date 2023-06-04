@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 95867503
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 223d06c01d1404e42704b8d920b3dd58
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b0363f7088f9761414f730641bf9a24b
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Oculus/SampleFramework/Usage/OVROverlay/Textures/Tile_Texture_OculusVideo.png
+Dependencies: []
