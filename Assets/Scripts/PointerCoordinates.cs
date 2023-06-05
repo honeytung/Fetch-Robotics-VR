@@ -8,7 +8,8 @@ using Oculus.Interaction;
 
 public class PointerCoordinates : MonoBehaviour {
     [SerializeField] TextMeshProUGUI textElement;
-    [SerializeField] OVRRaycaster rayCaster;
+    [SerializeField] GameObject canvas;
+    [SerializeField] RawImage rawImage;
     [SerializeField] GameObject sphere;
 
     // Start is called before the first frame update
@@ -22,10 +23,18 @@ public class PointerCoordinates : MonoBehaviour {
         string coordinates = "Coordinates";
 
         if (sphere.activeSelf) {
-            Vector3 spherePosition = sphere.transform.localPosition;
-            coordinates = spherePosition.ToString();
-            textElement.text = coordinates;
+            Vector3 spherePosition = sphere.transform.position;
+            Vector2 canvasPosition = canvas.transform.InverseTransformPoint(spherePosition);
+            Vector2 rawImagePosInCanvas = rawImage.rectTransform.anchoredPosition;
+            Vector2 rawImageSize = rawImage.rectTransform.rect.size;
+            Vector2 rawImageNormalizedPos = new Vector2(
+                (canvasPosition.x - rawImagePosInCanvas.x) / rawImageSize.x, 
+                (canvasPosition.y - rawImagePosInCanvas.y) / rawImageSize.y);
+
+            coordinates = rawImageNormalizedPos.ToString();
         }
+
+        textElement.text = coordinates;
         /*
         PointerEventData pointerData = new PointerEventData(EventSystem.current);
         List<RaycastResult> results = new List<RaycastResult>();

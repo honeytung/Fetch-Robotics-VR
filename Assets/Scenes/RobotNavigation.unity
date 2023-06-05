@@ -362,6 +362,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364910755}
   m_CullTransparentMesh: 1
+--- !u!1 &378867444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1525749097544336, guid: a9d2de84afb308a4796cc671d3432b4d, type: 3}
+  m_PrefabInstance: {fileID: 996190197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &506597629
 GameObject:
   m_ObjectHideFlags: 0
@@ -2446,7 +2451,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textElement: {fileID: 2115047245}
-  rayInteractor: {fileID: 0}
+  canvas: {fileID: 1637770644}
+  rawImage: {fileID: 1816700162}
+  sphere: {fileID: 378867444}
 --- !u!114 &1637770650
 MonoBehaviour:
   m_ObjectHideFlags: 0
