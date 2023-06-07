@@ -29,7 +29,7 @@ public class PointerCoordinates : MonoBehaviour {
             Vector2 rawImageSize = rawImage.rectTransform.rect.size;
             Vector2 rawImageNormalizedPos = new Vector2(
                 ((canvasPosition.x - rawImagePosInCanvas.x) / rawImageSize.x + 0.5f) * rawImageSize.x, 
-                ((canvasPosition.y - rawImagePosInCanvas.y) / rawImageSize.y + 0.5f) * rawImageSize.y);
+                ((1 - ((canvasPosition.y - rawImagePosInCanvas.y) / rawImageSize.y + 0.5f)) * rawImageSize.y));
 
             coordinates = rawImageNormalizedPos.ToString();
         }

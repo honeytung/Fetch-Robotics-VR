@@ -126,8 +126,8 @@ public class camClient : MonoBehaviour
             Vector2 rawImagePosInCanvas = rawImage.rectTransform.anchoredPosition;
             Vector2 rawImageSize = rawImage.rectTransform.rect.size;
             Vector2 rawImageNormalizedPos = new Vector2(
-                (canvasPosition.x - rawImagePosInCanvas.x) / rawImageSize.x,
-                (canvasPosition.y - rawImagePosInCanvas.y) / rawImageSize.y);
+                ((canvasPosition.x - rawImagePosInCanvas.x) / rawImageSize.x + 0.5f) * rawImageSize.x, 
+                ((1 - ((canvasPosition.y - rawImagePosInCanvas.y) / rawImageSize.y + 0.5f)) * rawImageSize.y));
 
             coordinates = rawImageNormalizedPos.ToString();
         }
