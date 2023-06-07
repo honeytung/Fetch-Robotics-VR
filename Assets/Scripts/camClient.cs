@@ -16,6 +16,7 @@ public class camClient : MonoBehaviour
     public string serverUrl = "ws://10.155.234.220:8765";
     public Camera mainCam;
     public GameObject canvas;
+    public GameObject fetchModel;
     public RawImage rawImage;
     public GameObject sphere;
     public TextMeshProUGUI printMessage;
@@ -78,11 +79,48 @@ public class camClient : MonoBehaviour
         UnityEngine.Debug.Log("WebSocket connected.");
     }
 
+    private void changeFetchPosition(float poseX, float poseZ, float orienX, float orienY, float orienZ, float orienW) 
+    {
+        Vector3 targetPosition = fetchModel.transform.position;
+        Quaternion targetRotation = fetchModel.transform.rotation;
+
+        targetPosition.x = poseX;
+        targetPosition.z = poseZ;
+
+        targetRotation.x = orienX;
+        targetRotation.y = orienY;
+        targetRotation.z = orienZ;
+        targetRotation.w = orienW;
+
+        fetchModel.transform.position = targetPosition;
+        fetchModel.transform.rotation = targetRotation;
+    }
+
     private void OnWebSocketMessage(byte[] data)
     {
         response = System.Text.Encoding.UTF8.GetString(data);
         printResponse.text = response;
         UnityEngine.Debug.Log("WebSocket message received: " + response);
+
+        string[] delimiters = { ",", ";" };
+        string[] substrings = response.Split(delimiters, StringSplitOptions.None);
+
+        if (substrings.Length != 9) {
+            UnityEngine.Debug.LogError("Message is invalid.");
+            return;
+        }
+
+        String userStatus = substrings[0];
+        String maniupulationStatus = substrings[1];
+        float poseX = float.Parse(substrings[2]);
+        float poseY = float.Parse(substrings[3]);
+        float poseZ = float.Parse(substrings[4]);
+        float orienX = float.Parse(substrings[5]);
+        float orienY = float.Parse(substrings[6]);
+        float orienZ = float.Parse(substrings[7]);
+        float orienW = float.Parse(substrings[8]);
+
+        changeFetchPosition(poseX, poseZ, orienX, orienY, orienZ, orienW);
     }
 
     private void OnWebSocketError(string errorMessage)
