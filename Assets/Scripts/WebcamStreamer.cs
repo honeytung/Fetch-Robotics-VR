@@ -20,7 +20,7 @@ using UnityEngine.UI;
 public class WebcamStreamer : MonoBehaviour {
     [SerializeField] bool tryOnStart = true;
     [SerializeField] bool debugImage = false;
-    [SerializeField] string defaultStreamURL = "http://10.0.0.36:5000/video_feed";
+    [SerializeField] string defaultStreamURL = "http://10.155.234.37:5000";
     [SerializeField] RawImage rawImage;
 
     int MAX_RETRIES = 3;

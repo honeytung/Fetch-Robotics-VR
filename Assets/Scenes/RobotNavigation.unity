@@ -2571,7 +2571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tryOnStart: 1
   debugImage: 0
-  defaultStreamURL: http://10.0.0.36:5000
+  defaultStreamURL: http://10.155.234.37:5000
   rawImage: {fileID: 1816700162}
 --- !u!1 &1858549370
 GameObject:
