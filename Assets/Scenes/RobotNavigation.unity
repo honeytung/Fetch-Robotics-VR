@@ -967,9 +967,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5ad9208d7d81c4ea88a2f1e7454895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 40919616}
-  textElement: {fileID: 1954114503}
   serverUrl: ws://10.155.234.220:8765
+  mainCam: {fileID: 40919616}
+  canvas: {fileID: 1637770644}
+  rawImage: {fileID: 1816700162}
+  sphere: {fileID: 378867444}
+  printMessage: {fileID: 1954114503}
+  printResponse: {fileID: 2115047245}
+  homeButton: {fileID: 1867620021}
+  toolWallButton: {fileID: 1419981504}
+  tableButton: {fileID: 1096713285}
+  stopButton: {fileID: 2118758792}
+  controller: 2
 --- !u!1001 &996190197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2344,7 +2353,6 @@ GameObject:
   - component: {fileID: 1637770645}
   - component: {fileID: 1637770651}
   - component: {fileID: 1637770650}
-  - component: {fileID: 1637770649}
   m_Layer: 5
   m_Name: WebFeed
   m_TagString: Untagged
@@ -2438,22 +2446,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1637770649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1637770644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c16428244c5904429b44e0ae396fc7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textElement: {fileID: 2115047245}
-  canvas: {fileID: 1637770644}
-  rawImage: {fileID: 1816700162}
-  sphere: {fileID: 378867444}
 --- !u!114 &1637770650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3107,7 +3099,7 @@ GameObject:
   - component: {fileID: 1954114504}
   - component: {fileID: 1954114503}
   m_Layer: 5
-  m_Name: orientation
+  m_Name: message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3426,7 +3418,7 @@ GameObject:
   - component: {fileID: 2115047246}
   - component: {fileID: 2115047245}
   m_Layer: 5
-  m_Name: Coordinates
+  m_Name: response
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
