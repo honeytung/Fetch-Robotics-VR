@@ -85,13 +85,13 @@ public class camClient : MonoBehaviour
         Vector3 targetPosition = fetchModel.transform.position;
         Quaternion targetRotation = fetchModel.transform.rotation;
 
-        targetPosition.x = poseX;
-        targetPosition.z = poseZ;
+        targetPosition.x = 20 - (12.1782f - poseX);
+        targetPosition.z = poseZ - 20.8214f;
 
-        targetRotation.x = orienX;
-        targetRotation.y = orienY;
-        targetRotation.z = orienZ;
-        targetRotation.w = orienW;
+        //targetRotation.x = orienX;
+        //targetRotation.y = orienY;
+        //targetRotation.z = orienZ;
+        //targetRotation.w = orienW;
 
         fetchModel.transform.position = targetPosition;
         fetchModel.transform.rotation = targetRotation;
@@ -172,7 +172,7 @@ public class camClient : MonoBehaviour
         float orienZ = float.Parse(substrings[7]);
         float orienW = float.Parse(substrings[8]);
 
-        changeFetchPosition(poseX, poseZ, orienX, orienY, orienZ, orienW);
+        changeFetchPosition(poseX, poseY, orienX, orienY, orienZ, orienW);
         updateUIStatus(userStatus);
     }
 
@@ -229,7 +229,7 @@ public class camClient : MonoBehaviour
             grabBool = 1;
         }
 
-        if (mainCam != null && printMessage != null)
+        if (mainCam != null)
         {
             messageSendTimer += Time.deltaTime;
             if (messageSendTimer >= 0.25)
@@ -240,7 +240,6 @@ public class camClient : MonoBehaviour
                 Vector2 touchPosition = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick, OVRInput.Controller.Touch);
                 string touchPositionString = touchPosition.ToString();
                 string combinedMessage = $"{camRotation};{touchPositionString};{coordinates};{grabBool};{homeBool};{toolWallBool};{tableBool};{stopBool}";
-                printMessage.text = combinedMessage;
                 SendMessageToServer(combinedMessage);
                 messageSendTimer = 0f;
                 grabBool = 0;
