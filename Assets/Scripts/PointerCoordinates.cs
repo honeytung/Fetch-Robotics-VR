@@ -28,27 +28,12 @@ public class PointerCoordinates : MonoBehaviour {
             Vector2 rawImagePosInCanvas = rawImage.rectTransform.anchoredPosition;
             Vector2 rawImageSize = rawImage.rectTransform.rect.size;
             Vector2 rawImageNormalizedPos = new Vector2(
-                (canvasPosition.x - rawImagePosInCanvas.x) / rawImageSize.x, 
-                (canvasPosition.y - rawImagePosInCanvas.y) / rawImageSize.y);
+                ((canvasPosition.x - rawImagePosInCanvas.x) / rawImageSize.x + 0.5f) * rawImageSize.x, 
+                ((canvasPosition.y - rawImagePosInCanvas.y) / rawImageSize.y + 0.5f) * rawImageSize.y);
 
             coordinates = rawImageNormalizedPos.ToString();
         }
 
         textElement.text = coordinates;
-        /*
-        PointerEventData pointerData = new PointerEventData(EventSystem.current);
-        List<RaycastResult> results = new List<RaycastResult>();
-        Vector2 position;
-
-        rayCaster.RaycastPointer(pointerData, results);
-
-        foreach (RaycastResult result in results) {
-            position = rayCaster.GetScreenPosition(result);
-            coordinates = position.ToString();
-
-            UnityEngine.Debug.Log(coordinates);
-            textElement.text = coordinates;
-        }
-        */
     }
 }
