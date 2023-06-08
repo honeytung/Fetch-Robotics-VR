@@ -101,6 +101,7 @@ public class camClient : MonoBehaviour
     {
         int statusValue;
         bool parseSuccess = int.TryParse(userStatus, out statusValue);
+        Color textColor = statusText.color;
 
         if (parseSuccess)
         {
@@ -109,31 +110,40 @@ public class camClient : MonoBehaviour
             if (statusValue == 0)
             {
                 status = "Idle";
+                textColor = Color.green;
             }
             else if (statusValue == 1)
             {
                 status = "Traveling";
+                textColor = Color.yellow;
             }
             else if (statusValue == 3)
             {
                 status = "Picking";
+                textColor = Color.yellow;
             }
             else if (statusValue == 4)
             {
                 status = "Placing";
+                textColor = Color.yellow;
             }
             else if (statusValue == 5)
             {
                 status = "Inoperable";
+                textColor = Color.red;
             }
             else if (statusValue == 6)
             {
                 status = "Waiting";
+                textColor = Color.green;
             }
             else
             {
                 status = "Unknown";
+                textColor = Color.red;
             }
+
+            statusText.color = textColor;
             statusText.text = status;
         }
     }
