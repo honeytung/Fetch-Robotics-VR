@@ -81,6 +81,7 @@ public class camClient : MonoBehaviour
     private void OnWebSocketMessage(byte[] data)
     {
         response = System.Text.Encoding.UTF8.GetString(data);
+        printResponse.text = response;
         UnityEngine.Debug.Log("WebSocket message received: " + response);
     }
 
