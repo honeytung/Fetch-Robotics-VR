@@ -19,6 +19,7 @@ public class camClient : MonoBehaviour
     public GameObject fetchModel;
     public RawImage rawImage;
     public GameObject sphere;
+    public TextMeshProUGUI statusText;
     public TextMeshProUGUI printMessage;
     public TextMeshProUGUI printResponse;
     public Button homeButton;
@@ -96,6 +97,47 @@ public class camClient : MonoBehaviour
         fetchModel.transform.rotation = targetRotation;
     }
 
+    private void updateUIStatus(String userStatus)
+    {
+        int statusValue;
+        bool parseSuccess = int.TryParse(userStatus, out statusValue);
+
+        if (parseSuccess)
+        {
+            String status;
+
+            if (statusValue == 0)
+            {
+                status = "Idle";
+            }
+            else if (statusValue == 1)
+            {
+                status = "Traveling";
+            }
+            else if (statusValue == 3)
+            {
+                status = "Picking";
+            }
+            else if (statusValue == 4)
+            {
+                status = "Placing";
+            }
+            else if (statusValue == 5)
+            {
+                status = "Inoperable";
+            }
+            else if (statusValue == 6)
+            {
+                status = "Waiting";
+            }
+            else
+            {
+                status = "Unknown";
+            }
+            statusText.text = status;
+        }
+    }
+
     private void OnWebSocketMessage(byte[] data)
     {
         response = System.Text.Encoding.UTF8.GetString(data);
@@ -121,6 +163,7 @@ public class camClient : MonoBehaviour
         float orienW = float.Parse(substrings[8]);
 
         changeFetchPosition(poseX, poseZ, orienX, orienY, orienZ, orienW);
+        updateUIStatus(userStatus);
     }
 
     private void OnWebSocketError(string errorMessage)
