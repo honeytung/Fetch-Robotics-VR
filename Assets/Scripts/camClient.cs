@@ -38,19 +38,18 @@ public class camClient : MonoBehaviour
 
     async void Start()
     {
+        // buttons
+        homeButton.onClick.AddListener(clickHome);
+        toolWallButton.onClick.AddListener(clickToolWall);
+        tableButton.onClick.AddListener(clickTable);
+        stopButton.onClick.AddListener(clickStop);
+        // websocket
         websocket = new WebSocket(serverUrl);
         websocket.OnOpen += OnWebSocketOpen;
         websocket.OnMessage += OnWebSocketMessage;
         websocket.OnError += OnWebSocketError;
         websocket.OnClose += OnWebSocketClose;
         await websocket.Connect();
-        // coordinates
-        printResponse.text = coordinates;
-        // buttons
-        homeButton.onClick.AddListener(clickHome);
-        toolWallButton.onClick.AddListener(clickToolWall);
-        tableButton.onClick.AddListener(clickTable);
-        stopButton.onClick.AddListener(clickStop);
     }
 
     async void OnDestroy()
