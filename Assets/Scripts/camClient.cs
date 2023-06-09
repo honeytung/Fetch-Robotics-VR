@@ -25,6 +25,8 @@ public class camClient : MonoBehaviour
     public Button homeButton;
     public Button toolWallButton;
     public Button tableButton;
+    public Button pickButton;
+    public Button placeButton;
     public Button stopButton;
     public OVRInput.Controller controller = OVRInput.Controller.RTouch;
 
@@ -35,6 +37,8 @@ public class camClient : MonoBehaviour
     private int homeBool = 0;
     private int toolWallBool = 0;
     private int tableBool = 0;
+    private int pickBool = 0;
+    private int placeBool = 0;
     private int stopBool = 0;
     private string response;
 
@@ -44,6 +48,8 @@ public class camClient : MonoBehaviour
         homeButton.onClick.AddListener(clickHome);
         toolWallButton.onClick.AddListener(clickToolWall);
         tableButton.onClick.AddListener(clickTable);
+        pickButton.onClick.AddListener(clickPick);
+        placeButton.onClick.AddListener(clickPlace);
         stopButton.onClick.AddListener(clickStop);
         // websocket
         websocket = new WebSocket(serverUrl);
@@ -201,6 +207,16 @@ public class camClient : MonoBehaviour
         tableBool = 1;
     }
 
+    void clickPick()
+    {
+        pickBool = 1;
+    }
+
+    void clickPlace()
+    {
+        placeBool = 1;
+    }
+
     void clickStop()
     {
         stopBool = 1;
@@ -239,13 +255,16 @@ public class camClient : MonoBehaviour
                 // Get the controller stick values
                 Vector2 touchPosition = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick, OVRInput.Controller.Touch);
                 string touchPositionString = touchPosition.ToString();
-                string combinedMessage = $"{camRotation};{touchPositionString};{coordinates};{grabBool};{homeBool};{toolWallBool};{tableBool};{stopBool}";
+                string combinedMessage = $"{camRotation};{touchPositionString};{coordinates};{grabBool};{homeBool};{toolWallBool};{tableBool};{stopBool};{pickBool};{placeBool}";
+                printMessage.text = combinedMessage;
                 SendMessageToServer(combinedMessage);
                 messageSendTimer = 0f;
                 grabBool = 0;
                 homeBool = 0;
                 toolWallBool = 0;
                 tableBool = 0;
+                pickBool = 0;
+                placeBool = 0;
                 stopBool = 0;
             }
         }
