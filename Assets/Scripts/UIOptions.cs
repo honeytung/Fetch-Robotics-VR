@@ -15,6 +15,7 @@ using UnityEngine.UI;
 public class UIOptions : MonoBehaviour {
     [SerializeField] GameObject canvas;
     [SerializeField] RawImage webStreamImage;
+    [SerializeField] GameObject panel;
     [SerializeField] GameObject debugText;
 
     bool UIisActive;
@@ -26,7 +27,8 @@ public class UIOptions : MonoBehaviour {
         CamisActive = false;
         canvas.SetActive(UIisActive);
         webStreamImage.enabled = CamisActive;
-        debugText.SetActive(CamisActive);
+        panel.SetActive(false);
+        debugText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -39,7 +41,8 @@ public class UIOptions : MonoBehaviour {
         {
             CamisActive = !CamisActive;
             webStreamImage.enabled = CamisActive;
-            debugText.SetActive(CamisActive);
+            debugText.SetActive(false);
+            //panel.SetActive(true);
         }
     }
 }

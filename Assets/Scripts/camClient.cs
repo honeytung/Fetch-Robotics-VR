@@ -91,8 +91,8 @@ public class camClient : MonoBehaviour
         Vector3 targetPosition = fetchModel.transform.position;
         Quaternion targetRotation = fetchModel.transform.rotation;
 
-        targetPosition.x = 20 - (12.1782f - poseX);
-        targetPosition.z = poseZ - 20.8214f;
+        targetPosition.x = -1.40464f * poseX + 18.585f;
+        targetPosition.z = -0.94045f * poseZ + 2.52791f;
 
         //targetRotation.x = orienX;
         //targetRotation.y = orienY;
@@ -151,6 +151,10 @@ public class camClient : MonoBehaviour
 
             statusText.color = textColor;
             statusText.text = status;
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("User Status Invalid.");
         }
     }
 
